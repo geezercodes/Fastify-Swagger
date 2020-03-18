@@ -3,6 +3,7 @@ const fastify = require('fastify')({
     logger: true
   })
 const mongoose = require('mongoose')
+const routes = require('./routes')
 //connect to database
 mongoose.connect('mongodb://localhost/mycargarage')
   .then(()=> console.log('MongoDb Connected...'))
@@ -11,6 +12,11 @@ mongoose.connect('mongodb://localhost/mycargarage')
   fastify.get('/', async (request, reply) => {
     return { hello: 'world' }
   })
+
+
+routes.forEach((route, index) => {
+ fastify.route(route)
+})
   
   // Run the server!
   const start = async () => {
