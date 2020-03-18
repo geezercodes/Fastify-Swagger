@@ -4,8 +4,16 @@
   "description": "A fastify exploration using Swagger to document API",
   "main": "index.js",
   "scripts": {
+    "start": "./node_modules/nodemon/bin/nodemon.js ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Meshack Mwaura",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "boom": "^7.3.0",
+    "fastify": "^2.12.1",
+    "fastify-swagger": "^2.5.0",
+    "mongoose": "^5.9.5",
+    "nodemon": "^2.0.2"
+  }
 }
