@@ -4,6 +4,9 @@ const fastify = require('fastify')({
   })
 const mongoose = require('mongoose')
 const routes = require('./routes')
+const swagger = require('./config/swagger')
+fastify.register(require('fastify-swagger'),swagger.options)
+
 //connect to database
 mongoose.connect('mongodb://localhost/mycargarage')
   .then(()=> console.log('MongoDb Connected...'))
@@ -14,6 +17,8 @@ mongoose.connect('mongodb://localhost/mycargarage')
   })
 
 
+
+
 routes.forEach((route, index) => {
  fastify.route(route)
 })
@@ -22,6 +27,7 @@ routes.forEach((route, index) => {
   const start = async () => {
     try {
       await fastify.listen(3000)
+      fastify.swagger()
       fastify.log.info(`server listening on ${fastify.server.address().port}`)
     } catch (err) {
       fastify.log.error(err)
